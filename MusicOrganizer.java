@@ -102,11 +102,16 @@ public class MusicOrganizer
      */
     public void listMatching(String searchString)
     {
+        boolean coincidencia = false;
         for(String filename : files) {
-            if(filename.contains(searchString)) {
+            if(filename.contains(searchString) == true) {
             //Una coincidencia
             System.out.println(filename);
+            coincidencia = true;
             }
+        }
+        if(coincidencia == false){
+        System.out.println("No se han encontrado coincidencias");
         }
     }
 }
