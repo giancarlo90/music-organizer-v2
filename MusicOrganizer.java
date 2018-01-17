@@ -145,8 +145,9 @@ public class MusicOrganizer
         int index = 0;
         //Indicar que vamos a seguir buscando hasta encontrar una correspondencia.
         boolean searching = true;
+        int valorLista = files.size();
 
-        while(searching && index < files.size()){
+        while(searching && index < valorLista){
             String filename = files.get(index);
             if(filename.contains(searchString)){
                 //Una correspondecia. Podemos dejar de buscar.
