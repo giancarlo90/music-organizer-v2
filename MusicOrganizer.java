@@ -13,7 +13,7 @@ public class MusicOrganizer
     private ArrayList<String> files;
     // A player for the music files.
     private MusicPlayer player;
-        
+
     /**
      * Create a MusicOrganizer
      */
@@ -22,7 +22,7 @@ public class MusicOrganizer
         files = new ArrayList<String>();
         player = new MusicPlayer();
     }
-    
+
     /**
      * Add a file to the collection.
      * @param filename The file to be added.
@@ -31,7 +31,7 @@ public class MusicOrganizer
     {
         files.add(filename);
     }
-    
+
     /**
      * Return the number of files in the collection.
      * @return The number of files in the collection.
@@ -40,7 +40,7 @@ public class MusicOrganizer
     {
         return files.size();
     }
-    
+
     /**
      * List a file from the collection.
      * @param index The index of the file to be listed.
@@ -52,7 +52,7 @@ public class MusicOrganizer
             System.out.println(filename);
         }
     }
-    
+
     /**
      * Remove a file from the collection.
      * @param index The index of the file to be removed.
@@ -82,7 +82,7 @@ public class MusicOrganizer
     {
         player.stop();
     }
-    
+
     /**
      * Muestra una lista de todos los archivos de la coleccion.
      */
@@ -90,11 +90,11 @@ public class MusicOrganizer
     {
         int position = 0;
         for (String filename : files) {
-        System.out.println(position + ": " + filename);
-        position ++;
+            System.out.println(position + ": " + filename);
+            position ++;
         }
     }
-    
+
     /**
      * Enumera los nombres de archivo que se corresponden con
      * la cadena de busqueda proporcionada.
@@ -105,17 +105,17 @@ public class MusicOrganizer
         boolean coincidencia = false;
         for(String filename : files) {
             if(filename.contains(searchString)) {
-            //Una coincidencia
-            System.out.println(filename);
-            coincidencia = true;
+                //Una coincidencia
+                System.out.println(filename);
+                coincidencia = true;
             }
         }
         if(coincidencia == false){
-        System.out.println("No se han encontrado coincidencias");
+            System.out.println("No se han encontrado coincidencias");
         }
     }
-    
-        /**
+
+    /**
      * Reproduce un poco de todas las canciones del artista deseado
      */
     public void singerAll(String singer)
@@ -123,13 +123,44 @@ public class MusicOrganizer
         boolean coincidencia = false;
         for(String filename : files) {
             if(filename.contains(singer)) {
-            //Una coincidencia
-            player.playSample(filename);
-            coincidencia = true;
+                //Una coincidencia
+                player.playSample(filename);
+                coincidencia = true;
             }
         }
         if(coincidencia == false){
-        System.out.println("No se han encontrado coincidencias");
+            System.out.println("No se han encontrado coincidencias");
         }
+    }
+
+    /**
+     * Localizar el indice del primer archivo que se corresponde con
+     * la cadena de busqueda indicada.
+     * @param searchString la cadena que hay que buscar.
+     * @return El indice de la primera aparicion, es decir -1 si
+     * no se encuentra ninguna correspondencia.
+     */
+    public int findFirst(String searchString)
+    {
+        int index = 0;
+        //Indicar que vamos a seguir buscando hasta encontrar una correspondencia.
+        boolean searching = true;
+
+        while(searching && index < files.size()){
+            String filename = files.get(index);
+            if(filename.contains(searchString)){
+                //Una correspondecia. Podemos dejar de buscar.
+                searching = false;
+            }
+            else {
+                //Pasar al siguiente elemento.
+                index ++;
+            }
+        }
+        if(searching){
+            index = -1;
+        }
+        return index;
+
     }
 }
