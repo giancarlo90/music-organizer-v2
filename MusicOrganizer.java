@@ -104,9 +104,27 @@ public class MusicOrganizer
     {
         boolean coincidencia = false;
         for(String filename : files) {
-            if(filename.contains(searchString) == true) {
+            if(filename.contains(searchString)) {
             //Una coincidencia
             System.out.println(filename);
+            coincidencia = true;
+            }
+        }
+        if(coincidencia == false){
+        System.out.println("No se han encontrado coincidencias");
+        }
+    }
+    
+        /**
+     * Reproduce un poco de todas las canciones del artista deseado
+     */
+    public void singerAll(String singer)
+    {
+        boolean coincidencia = false;
+        for(String filename : files) {
+            if(filename.contains(singer)) {
+            //Una coincidencia
+            player.playSample(filename);
             coincidencia = true;
             }
         }
